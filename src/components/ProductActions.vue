@@ -1,32 +1,23 @@
-<template>
-  <div v-if="products">
-    <article>
-      <div v-if="showFilters">
-        <div>
-          <span>Show: </span>
-          <form>
-            <select class="numProducts" name="numProductsSelect" @change="selectNumProducts()" v-model="numProductsSelected">
-              <option v-for="(num, index) in numProductsShownList" :value="num.value" :key="index">{{ num.value }}</option>
-            </select>
-          </form>
-        </div>
-        <p id="filters">
-          <span>Sort By: </span>
-          <ul>
-            <li class="filter" v-for="(filter, index) in filters" :key="index" @click="selectFilter(index)">
-              {{ filter.name }}
-            </li>
-          </ul>
-        </p>
-      </div>
-      <div v-else>
-        <p>{{ (pages.current === pages.total -1) ? products[products.length-1] : numProductsShown * (pages.current+1) }} of {{ products[products.length-1] }} products</p>
-      </div>
-      <img v-if="pages.current > 0 && pages.current < pages.total" src="../assets/arrow-left.svg" title="Previous Page" alt="Previous Page" @click="previousPage()" />
-      <img v-if="pages.total - pages.current -1" src="../assets/arrow-right.svg" title="Next Page" alt="Next Page" @click="nextPage()" />
-    </article>
-    <hr />
-  </div>
+<template lang="pug">
+  div(v-if='products')
+  article
+    div(v-if='showFilters')
+      div
+        span Show: 
+        form
+          select.numProducts(name='numProductsSelect', @change='selectNumProducts()', v-model='numProductsSelected')
+            option(v-for='(num, index) in numProductsShownList', :value='num.value', :key='index') {{ num.value }}
+      p#filters
+        span Sort By: 
+        ul
+          li.filter(v-for='(filter, index) in filters', :key='index', @click='selectFilter(index)')
+            | {{ filter.name }}
+    div(v-else='')
+      p
+        | {{ (pages.current === pages.total -1) ? products[products.length-1] : numProductsShown * (pages.current+1) }} of {{ products[products.length-1] }} products
+    img(v-if='pages.current > 0 && pages.current < pages.total', src='../assets/arrow-left.svg', title='Previous Page', alt='Previous Page', @click='previousPage()')
+    img(v-if='pages.total - pages.current -1', src='../assets/arrow-right.svg', title='Next Page', alt='Next Page', @click='nextPage()')
+  hr
 </template>
 
 <script>

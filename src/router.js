@@ -11,13 +11,7 @@ const router = new Router({
       path: '/',
       name: 'Main',
       component: Main
-    },
-    {
-      path: '/points',
-      name: 'Points',
-      component: Main
     }
-
   ],
   mode: 'history'
 })

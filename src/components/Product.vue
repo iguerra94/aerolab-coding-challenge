@@ -1,41 +1,29 @@
-<template>
-  <div v-if="user" class="card">
-    <div v-show="canRedeemProduct" class="active canRedeem">
-      <div id="redeem">
-        <div class="cost">
-          <p>{{ product.cost }}</p>
-          <img id="coin" src="../assets/coin.svg" alt="" />
-        </div>
-        <button @click.prevent="redeemProduct(product._id)">Redeem Now</button>
-      </div>
-    </div>
-    <div v-show="!canRedeemProduct" class="active cannotRedeem">
-      <div id="redeem">
-        <div class="cost">
-          <span>You need {{ necessaryPoints }}</span>
-          <img id="coin" src="../assets/coin.svg" alt="" />
-        </div>
-        <button @click.prevent="getMorePoints(product._id)">Get more points</button>
-      </div>
-    </div>
-    <div class="card-image">
-      <div class="buy-icon" v-if="canRedeemProduct">
-        <img src="../assets/buy-blue.svg" alt="">
-      </div>
-      <div v-else id="points">
-        <span>You need {{ necessaryPoints }}</span>
-        <img id="coin" src="../assets/coin.svg"  alt="" />
-      </div>
-      <figure>
-        <img :src='product.img.url' :alt='product.name' />
-      </figure>
-    </div>
-    <div class="card-content">
-      <hr>
-      <span>{{ product.category }}</span>
-      <p>{{ product.name }}</p>
-    </div>
-  </div>
+<template lang="pug">
+  .card(v-if='user')
+  .active.canRedeem(v-show='canRedeemProduct')
+    #redeem
+      .cost
+        p {{ product.cost }}
+        img#coin(src='../assets/coin.svg', alt='')
+      button(@click.prevent='redeemProduct(product._id)') Redeem Now
+  .active.cannotRedeem(v-show='!canRedeemProduct')
+    #redeem
+      .cost
+        span You need {{ necessaryPoints }}
+        img#coin(src='../assets/coin.svg', alt='')
+      button(@click.prevent='getMorePoints(product._id)') Get more points
+  .card-image
+    .buy-icon(v-if='canRedeemProduct')
+      img(src='../assets/buy-blue.svg', alt='')
+    #points(v-else='')
+      span You need {{ necessaryPoints }}
+      img#coin(src='../assets/coin.svg', alt='')
+    figure
+      img(:src='product.img.url', :alt='product.name')
+  .card-content
+    hr
+    span {{ product.category }}
+    p {{ product.name }}
 </template>
 
 <script>

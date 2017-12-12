@@ -6,24 +6,13 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     user: null,
-    userPoints: null,
     products: null,
     sortByFilter: null,
     numProductsShown: null,
     pages: null
   },
-  // getters: {
-  //   getUser: (state) => state.user,
-  //   getProducts: (state) => state.products,
-  //   getSortByFilter: (state) => state.sortByFilter,
-  //   getNumProductsShown: (state) => state.numProductsShown,
-  //   getCurrentPage: (state) => state.currentPage
-  // },
   mutations: {
     SET_USER (state, user) {
-      state.user = user
-    },
-    SET_USER_POINTS (state, userPoui) {
       state.user = user
     },
     SET_PRODUCTS (state, products) {
